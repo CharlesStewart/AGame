@@ -5,8 +5,8 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import xyz.lexteam.agame.component.PositionComponent;
-import xyz.lexteam.agame.component.TextureComponent;
+import xyz.lexteam.agame.entity.component.PositionComponent;
+import xyz.lexteam.agame.entity.component.TextureComponent;
 
 public class RenderSystem extends IteratingSystem {
 

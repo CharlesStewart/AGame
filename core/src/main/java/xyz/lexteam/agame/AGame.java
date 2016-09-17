@@ -26,11 +26,11 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import xyz.lexteam.agame.component.PositionComponent;
-import xyz.lexteam.agame.component.TextureComponent;
-import xyz.lexteam.agame.component.VelocityComponent;
-import xyz.lexteam.agame.system.MovementSystem;
-import xyz.lexteam.agame.system.RenderSystem;
+import xyz.lexteam.agame.entity.component.PositionComponent;
+import xyz.lexteam.agame.entity.component.TextureComponent;
+import xyz.lexteam.agame.entity.component.VelocityComponent;
+import xyz.lexteam.agame.entity.system.MovementSystem;
+import xyz.lexteam.agame.entity.system.RenderSystem;
 
 public class AGame extends ApplicationAdapter {
 
