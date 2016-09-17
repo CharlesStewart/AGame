@@ -6,6 +6,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
+        classpath 'gradle.plugin.net.minecrell:licenser:0.2.1'
     }
 }
 

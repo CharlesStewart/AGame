@@ -1,5 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'net.minecrell.licenser'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -10,6 +11,10 @@ dependencies {
     compile project(':core')
     compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$rootProject.gdxVersion"
     compile "com.badlogicgames.gdx:gdx-platform:$rootProject.gdxVersion:natives-desktop"
+}
+
+license {
+    header rootProject.file('HEADER.txt')
 }
 
 // Source compiler configuration
