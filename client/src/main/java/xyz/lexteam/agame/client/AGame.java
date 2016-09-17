@@ -14,23 +14,20 @@
  * limitations under the License.
  */
 
-package xyz.lexteam.agame;
+package xyz.lexteam.agame.client;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import xyz.lexteam.agame.entity.component.PositionComponent;
-import xyz.lexteam.agame.entity.component.TextureComponent;
-import xyz.lexteam.agame.entity.component.VelocityComponent;
 import xyz.lexteam.agame.entity.system.MovementSystem;
-import xyz.lexteam.agame.entity.system.RenderSystem;
+import xyz.lexteam.agame.client.entity.component.TextureComponent;
+import xyz.lexteam.agame.client.entity.system.RenderSystem;
+
 
 public class AGame extends ApplicationAdapter {
 
