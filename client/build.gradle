@@ -7,7 +7,8 @@ targetCompatibility = 1.8
 archivesBaseName = project.name.toLowerCase()
 
 dependencies {
-    compile "com.badlogicgames.ashley:ashley:$rootProject.ashleyVersion"
+    compile project(':core')
+    compile "com.badlogicgames.gdx:gdx:$rootProject.gdxVersion"
 }
 
 license {
