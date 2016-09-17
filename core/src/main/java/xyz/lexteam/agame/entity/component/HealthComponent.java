@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package xyz.lexteam.agame.component;
+package xyz.lexteam.agame.entity.component;
 
 import com.badlogic.ashley.core.Component;
 

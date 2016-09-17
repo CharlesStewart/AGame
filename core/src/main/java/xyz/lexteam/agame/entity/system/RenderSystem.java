@@ -1,4 +1,4 @@
-package xyz.lexteam.agame.system;
+package xyz.lexteam.agame.entity.system;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;

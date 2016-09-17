@@ -14,49 +14,56 @@
  * limitations under the License.
  */
 
-package xyz.lexteam.agame.component;
+package xyz.lexteam.agame.entity.component;
 
 import com.badlogic.ashley.core.Component;
 
 /**
  * A {@link Component} for position data.
  */
-public class VelocityComponent implements Component {
+public class PositionComponent implements Component {
 
-    private float x;
-    private float y;
+    private float x = 0;
+    private float y = 0;
+
+    public PositionComponent() {}
+
+    public PositionComponent(float x, float y){
+        this.x = x;
+        this.y = y;
+    }
 
     /**
-     * Gets the X velocity of the entity.
+     * Gets the X coordinate of the entity.
      *
-     * @return The X velocity
+     * @return The X coord
      */
     public float getX() {
         return this.x;
     }
 
     /**
-     * Gets the Y velocity of the entity.
+     * Gets the Y coordinate of the entity.
      *
-     * @return The Y velocity
+     * @return The Y coord
      */
     public float getY() {
         return this.y;
     }
 
     /**
-     * Sets the X velocity of the entity.
+     * Sets the X coordinate of the entity.
      *
-     * @param x The X velocity
+     * @param x The X coord
      */
     public void setX(float x) {
         this.x = x;
     }
 
     /**
-     * Sets the Y velocity of the entity.
+     * Sets the Y coordinate of the entity.
      *
-     * @param y The Y velocity
+     * @param y The Y coord
      */
     public void setY(float y) {
         this.y = y;
