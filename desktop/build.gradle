@@ -1,46 +1,43 @@
-apply plugin: "java"
+apply plugin: 'java'
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'net.minecrell.licenser'
 
-sourceCompatibility = 1.6
-sourceSets.main.java.srcDirs = [ "src/" ]
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
-project.ext.mainClassName = "xyz.lexteam.agame.desktop.DesktopLauncher"
-project.ext.assetsDir = new File("../core/assets");
+archivesBaseName = project.name.toLowerCase()
 
-task run(dependsOn: classes, type: JavaExec) {
-    main = project.mainClassName
-    classpath = sourceSets.main.runtimeClasspath
-    standardInput = System.in
-    workingDir = project.assetsDir
-    ignoreExitValue = true
+dependencies {
+    compile project(':core')
+    compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$rootProject.gdxVersion"
+    compile "com.badlogicgames.gdx:gdx-platform:$rootProject.gdxVersion:natives-desktop"
 }
 
-task dist(type: Jar) {
-    from files(sourceSets.main.output.classesDir)
-    from files(sourceSets.main.output.resourcesDir)
-    from {configurations.compile.collect {zipTree(it)}}
-    from files(project.assetsDir);
- 
+license {
+    header rootProject.file('HEADER.txt')
+}
+
+// Source compiler configuration
+configure([compileJava, compileTestJava]) {
+    options.compilerArgs += ['-Xlint:all', '-Xlint:-path']
+    options.deprecation = true
+    options.encoding = 'UTF-8'
+}
+
+jar {
+    classifier = 'base'
+
     manifest {
-        attributes 'Main-Class': project.mainClassName
+        attributes(
+                'Main-Class': 'xyz.lexteam.agame.desktop.DesktopLauncher'
+        )
     }
 }
 
-dist.dependsOn classes
-
-eclipse {
-    project {
-        name = appName + "-desktop"
-        linkedResource name: 'assets', type: '2', location: 'PARENT-1-PROJECT_LOC/core/assets'
-    }
+shadowJar {
+    classifier = ''
 }
 
-task afterEclipseImport(description: "Post processing after project generation", group: "IDE") {
-  doLast {
-    def classpath = new XmlParser().parse(file(".classpath"))
-    new Node(classpath, "classpathentry", [ kind: 'src', path: 'assets' ]);
-    def writer = new FileWriter(file(".classpath"))
-    def printer = new XmlNodePrinter(new PrintWriter(writer))
-    printer.setPreserveWhitespace(true)
-    printer.print(classpath)
-  }
+artifacts {
+    archives shadowJar
 }
