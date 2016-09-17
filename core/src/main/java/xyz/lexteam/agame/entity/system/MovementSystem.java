@@ -4,8 +4,8 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import xyz.lexteam.agame.component.PositionComponent;
-import xyz.lexteam.agame.component.VelocityComponent;
+import xyz.lexteam.agame.entity.component.PositionComponent;
+import xyz.lexteam.agame.entity.component.VelocityComponent;
 
 public class MovementSystem extends IteratingSystem{
 

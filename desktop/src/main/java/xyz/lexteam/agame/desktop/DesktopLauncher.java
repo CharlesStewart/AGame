@@ -18,7 +18,7 @@ package xyz.lexteam.agame.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import xyz.lexteam.agame.AGame;
+import xyz.lexteam.agame.client.AGame;
 
 public class DesktopLauncher {
 
