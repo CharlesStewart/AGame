@@ -1,4 +1,4 @@
-package xyz.lexteam.agame.entity.system;
+package xyz.lexteam.agame.client.entity.system;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
@@ -6,7 +6,8 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import xyz.lexteam.agame.entity.component.PositionComponent;
-import xyz.lexteam.agame.entity.component.TextureComponent;
+import xyz.lexteam.agame.client.entity.component.TextureComponent;
+import xyz.lexteam.agame.entity.system.MovementSystem;
 
 /**
  * An {@link IteratingSystem} for rendering an texture at a position.
