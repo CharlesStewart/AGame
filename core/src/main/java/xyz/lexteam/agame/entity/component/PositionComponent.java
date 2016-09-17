@@ -23,12 +23,14 @@ import com.badlogic.ashley.core.Component;
  */
 public class PositionComponent implements Component {
 
-    private float x = 0;
-    private float y = 0;
+    private float x;
+    private float y;
 
-    public PositionComponent() {}
+    public PositionComponent() {
+        this(0, 0);
+    }
 
-    public PositionComponent(float x, float y){
+    public PositionComponent(float x, float y) {
         this.x = x;
         this.y = y;
     }

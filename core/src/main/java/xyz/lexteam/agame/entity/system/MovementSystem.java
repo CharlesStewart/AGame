@@ -28,7 +28,6 @@ import xyz.lexteam.agame.entity.component.VelocityComponent;
  */
 public class MovementSystem extends IteratingSystem {
 
-
     private final float entityDeaccelSpeed = 0.5f;
 
     /**
