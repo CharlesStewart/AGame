@@ -26,23 +26,24 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class AGame extends ApplicationAdapter {
-	SpriteBatch batch;
-	Sprite sprite;
 
-    public void move(int key, boolean moving){
+    SpriteBatch batch;
+    Sprite sprite;
+
+    public void move(int key, boolean moving) {
 
     }
 
 
-	@Override
-	public void create () {
-		batch = new SpriteBatch();
-		sprite = new Sprite(new Texture("player.png"));
-        Gdx.input.setInputProcessor(new InputAdapter(){
+    @Override
+    public void create() {
+        batch = new SpriteBatch();
+        sprite = new Sprite(new Texture("player.png"));
+        Gdx.input.setInputProcessor(new InputAdapter() {
 
             @Override
             public boolean keyDown(int key) {
-                switch(key){
+                switch (key) {
                     case Input.Keys.W:
                         sprite.setPosition(sprite.getX(), sprite.getY() + 1);
                         break;
@@ -59,14 +60,15 @@ public class AGame extends ApplicationAdapter {
                 return super.keyDown(key);
             }
         });
-	}
+    }
 
-	@Override
-	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		sprite.draw(batch);
-		batch.end();
-	}
+    @Override
+    public void render() {
+        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.begin();
+        sprite.draw(batch);
+        batch.end();
+    }
+
 }
