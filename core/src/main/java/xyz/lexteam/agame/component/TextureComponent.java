@@ -17,31 +17,31 @@
 package xyz.lexteam.agame.component;
 
 import com.badlogic.ashley.core.Component;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.Texture;
 
 /**
- * The {@link Component} for sprite data.
+ * The {@link Component} for Texture data.
  */
-public class SpriteComponent implements Component {
+public class TextureComponent implements Component {
 
-    private Sprite sprite;
+    private Texture texture;
 
     /**
-     * Gets the {@link Sprite} of the entity.
+     * Gets the {@link Texture} of the entity.
      *
-     * @return The sprite
+     * @return The Texture
      */
-    public Sprite getSprite() {
-        return this.sprite;
+    public Texture getTexture() {
+        return this.Texture;
     }
 
     /**
-     * Sets the {@link Sprite} of the entity.
+     * Sets the {@link Texture} of the entity.
      *
-     * @param sprite The sprite
+     * @param Texture The Texture
      */
-    public void setSprite(Sprite sprite) {
-        this.sprite = sprite;
+    public void setTexture(Texture Texture) {
+        this.Texture = Texture;
     }
 
 }
