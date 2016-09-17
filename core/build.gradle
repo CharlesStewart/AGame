@@ -1,11 +1,18 @@
-apply plugin: "java"
+apply plugin: 'java'
 
-sourceCompatibility = 1.6
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
-sourceSets.main.java.srcDirs = [ "src/" ]
+archivesBaseName = project.name.toLowerCase()
 
+dependencies {
+    compile "com.badlogicgames.gdx:gdx:$rootProject.gdxVersion"
+    compile "com.badlogicgames.ashley:ashley:$rootProject.ashleyVersion"
+}
 
-eclipse.project {
-    name = appName + "-core"
+// Source compiler configuration
+configure([compileJava, compileTestJava]) {
+    options.compilerArgs += ['-Xlint:all', '-Xlint:-path']
+    options.deprecation = true
+    options.encoding = 'UTF-8'
 }
