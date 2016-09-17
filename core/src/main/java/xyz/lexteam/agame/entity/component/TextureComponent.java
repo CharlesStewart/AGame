@@ -14,33 +14,34 @@
  * limitations under the License.
  */
 
-package xyz.lexteam.agame.component;
+package xyz.lexteam.agame.entity.component;
 
 import com.badlogic.ashley.core.Component;
+import com.badlogic.gdx.graphics.g2d.Texture;
 
 /**
- * A {@link Component} for health data.
+ * The {@link Component} for Texture data.
  */
-public class HealthComponent implements Component {
+public class TextureComponent implements Component {
 
-    private float health;
+    private Texture texture;
 
     /**
-     * Gets the health of the entity.
+     * Gets the {@link Texture} of the entity.
      *
-     * @return The health
+     * @return The Texture
      */
-    public float getHealth() {
-        return this.health;
+    public Texture getTexture() {
+        return this.Texture;
     }
 
     /**
-     * Sets the health of the entity.
+     * Sets the {@link Texture} of the entity.
      *
-     * @param health The health
+     * @param Texture The Texture
      */
-    public void setHealth(float health) {
-        this.health = health;
+    public void setTexture(Texture Texture) {
+        this.Texture = Texture;
     }
 
 }
