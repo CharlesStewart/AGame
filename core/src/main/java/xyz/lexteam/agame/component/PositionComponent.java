@@ -23,8 +23,15 @@ import com.badlogic.ashley.core.Component;
  */
 public class PositionComponent implements Component {
 
-    private float x;
-    private float y;
+    private float x = 0;
+    private float y = 0;
+
+    public PositionComponent() {}
+
+    public PositionComponent(float x, float y){
+        this.x = x;
+        this.y = y;
+    }
 
     /**
      * Gets the X coordinate of the entity.

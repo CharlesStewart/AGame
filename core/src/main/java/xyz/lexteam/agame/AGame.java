@@ -16,6 +16,8 @@
 
 package xyz.lexteam.agame;
 
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -24,50 +26,39 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import xyz.lexteam.agame.component.PositionComponent;
+import xyz.lexteam.agame.component.TextureComponent;
+import xyz.lexteam.agame.component.VelocityComponent;
+import xyz.lexteam.agame.system.MovementSystem;
+import xyz.lexteam.agame.system.RenderSystem;
 
 public class AGame extends ApplicationAdapter {
 
-    SpriteBatch batch;
-    Sprite sprite;
-
-    public void move(int key, boolean moving) {
-
-    }
-
+    private SpriteBatch batch;
+    private Engine engine;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
-        sprite = new Sprite(new Texture("player.png"));
-        Gdx.input.setInputProcessor(new InputAdapter() {
 
-            @Override
-            public boolean keyDown(int key) {
-                switch (key) {
-                    case Input.Keys.W:
-                        sprite.setPosition(sprite.getX(), sprite.getY() + 1);
-                        break;
-                    case Input.Keys.S:
-                        sprite.setPosition(sprite.getX(), sprite.getY() - 1);
-                        break;
-                    case Input.Keys.A:
-                        sprite.setPosition(sprite.getX() - 1, sprite.getY());
-                        break;
-                    case Input.Keys.D:
-                        sprite.setPosition(sprite.getX() + 1, sprite.getY());
-                        break;
-                }
-                return super.keyDown(key);
-            }
-        });
+        engine = new Engine();
+
+        engine.addSystem(new RenderSystem(batch));
+        engine.addSystem(new MovementSystem());
+
+        Entity player = new Entity();
+        player.add(new PositionComponent());
+        player.add(new TextureComponent(new Texture("player.png")));
+
+        engine.addEntity(player);
     }
 
     @Override
     public void render() {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
-        sprite.draw(batch);
+        engine.update(Gdx.graphics.getDeltaTime());
         batch.end();
     }
 

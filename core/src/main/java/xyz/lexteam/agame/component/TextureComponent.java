@@ -17,7 +17,7 @@
 package xyz.lexteam.agame.component;
 
 import com.badlogic.ashley.core.Component;
-import com.badlogic.gdx.graphics.g2d.Texture;
+import com.badlogic.gdx.graphics.Texture;
 
 /**
  * The {@link Component} for Texture data.
@@ -26,13 +26,17 @@ public class TextureComponent implements Component {
 
     private Texture texture;
 
+    public TextureComponent(Texture texture){
+        this.texture = texture;
+    }
+
     /**
      * Gets the {@link Texture} of the entity.
      *
      * @return The Texture
      */
     public Texture getTexture() {
-        return this.Texture;
+        return this.texture;
     }
 
     /**
@@ -41,7 +45,7 @@ public class TextureComponent implements Component {
      * @param Texture The Texture
      */
     public void setTexture(Texture Texture) {
-        this.Texture = Texture;
+        this.texture = Texture;
     }
 
 }
