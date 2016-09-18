@@ -16,47 +16,14 @@
 
 package xyz.lexteam.agame.client;
 
-import com.badlogic.ashley.core.Engine;
-import com.badlogic.ashley.core.Entity;
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import xyz.lexteam.agame.entity.component.PositionComponent;
-import xyz.lexteam.agame.entity.system.MovementSystem;
-import xyz.lexteam.agame.client.entity.component.TextureComponent;
-import xyz.lexteam.agame.client.entity.system.RenderSystem;
+import com.badlogic.gdx.Game;
+import xyz.lexteam.agame.client.screen.SplashScreen;
 
-
-public class AGame extends ApplicationAdapter {
-
-    private SpriteBatch batch;
-    private Engine engine;
+public class AGame extends Game {
 
     @Override
     public void create() {
-        batch = new SpriteBatch();
-
-        engine = new Engine();
-
-        engine.addSystem(new RenderSystem(batch));
-        engine.addSystem(new MovementSystem());
-
-        Entity player = new Entity();
-        player.add(new PositionComponent());
-        player.add(new TextureComponent(new Texture("player.png")));
-
-        engine.addEntity(player);
-    }
-
-    @Override
-    public void render() {
-        Gdx.gl.glClearColor(1, 1, 1, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.begin();
-        engine.update(Gdx.graphics.getDeltaTime());
-        batch.end();
+        this.setScreen(new SplashScreen());
     }
 
 }
