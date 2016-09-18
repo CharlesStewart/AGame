@@ -18,6 +18,7 @@ package xyz.lexteam.agame.client.screen;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.TimeUtils;
 import xyz.lexteam.agame.client.AGame;
 
 /**
@@ -27,6 +28,7 @@ public class SplashScreen implements Screen {
 
     private final AGame game;
     private final Texture splashTexture;
+    private long startTime;
 
     public SplashScreen(AGame game) {
         this.game = game;
@@ -35,13 +37,18 @@ public class SplashScreen implements Screen {
 
     @Override
     public void show() {
+        this.startTime = TimeUtils.millis();
     }
 
     @Override
     public void render(float delta) {
-        this.game.getBatch().begin();
-        this.game.getBatch().draw(this.splashTexture, 0, 0);
-        this.game.getBatch().end();
+        if (this.startTime + 3000 < TimeUtils.millis()) {
+            this.game.setScreen(new GameScreen(this.game));
+        } else {
+            this.game.getBatch().begin();
+            this.game.getBatch().draw(this.splashTexture, 0, 0);
+            this.game.getBatch().end();
+        }
     }
 
     @Override
