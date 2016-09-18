@@ -22,7 +22,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import xyz.lexteam.agame.client.AGame;
 import xyz.lexteam.agame.client.entity.component.TextureComponent;
 import xyz.lexteam.agame.client.entity.system.RenderSystem;
 import xyz.lexteam.agame.entity.component.PositionComponent;
@@ -33,14 +33,14 @@ import xyz.lexteam.agame.entity.system.MovementSystem;
  */
 public class GameScreen implements Screen {
 
-    private final SpriteBatch batch;
+    private final AGame game;
     private final Engine engine;
 
-    public GameScreen() {
-        this.batch = new SpriteBatch();
+    public GameScreen(AGame game) {
+        this.game = game;
         this.engine = new Engine();
 
-        this.engine.addSystem(new RenderSystem(this.batch));
+        this.engine.addSystem(new RenderSystem(this.game.getBatch()));
         this.engine.addSystem(new MovementSystem());
 
         Entity player = new Entity();
@@ -57,9 +57,9 @@ public class GameScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.begin();
+        this.game.getBatch().begin();
         engine.update(Gdx.graphics.getDeltaTime());
-        batch.end();
+        this.game.getBatch().end();
     }
 
     @Override
@@ -80,7 +80,6 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-        this.batch.dispose();
     }
 
 }

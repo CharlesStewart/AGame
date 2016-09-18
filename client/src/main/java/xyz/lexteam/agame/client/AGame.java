@@ -17,13 +17,29 @@
 package xyz.lexteam.agame.client;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import xyz.lexteam.agame.client.screen.SplashScreen;
 
 public class AGame extends Game {
 
+    private SpriteBatch batch;
+
     @Override
     public void create() {
-        this.setScreen(new SplashScreen());
+        // Create all the shared stuff
+        this.batch = new SpriteBatch();
+
+        // Set the screen
+        this.setScreen(new SplashScreen(this));
+    }
+
+    /**
+     * Gets the shared {@link SpriteBatch}.
+     *
+     * @return The sprite batch
+     */
+    public SpriteBatch getBatch() {
+        return this.batch;
     }
 
 }

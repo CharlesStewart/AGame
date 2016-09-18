@@ -18,18 +18,18 @@ package xyz.lexteam.agame.client.screen;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import xyz.lexteam.agame.client.AGame;
 
 /**
  * The splash screen.
  */
 public class SplashScreen implements Screen {
 
-    private final SpriteBatch batch;
+    private final AGame game;
     private final Texture splashTexture;
 
-    public SplashScreen() {
-        this.batch = new SpriteBatch();
+    public SplashScreen(AGame game) {
+        this.game = game;
         this.splashTexture = new Texture("splash.png");
     }
 
@@ -39,9 +39,9 @@ public class SplashScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        this.batch.begin();
-        this.batch.draw(this.splashTexture, 0, 0);
-        this.batch.end();
+        this.game.getBatch().begin();
+        this.game.getBatch().draw(this.splashTexture, 0, 0);
+        this.game.getBatch().end();
     }
 
     @Override
@@ -62,7 +62,6 @@ public class SplashScreen implements Screen {
 
     @Override
     public void dispose() {
-        this.batch.dispose();
         this.splashTexture.dispose();
     }
 
