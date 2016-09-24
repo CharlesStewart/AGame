@@ -28,7 +28,7 @@ import xyz.lexteam.agame.entity.component.VelocityComponent;
  */
 public class MovementSystem extends IteratingSystem {
 
-    private final float entityDeaccelSpeed = 0.5f;
+    private final float entityDecelSpeed = 0.1f;
 
     /**
      * Allows access to any entity's {@link PositionComponent}.
@@ -55,15 +55,36 @@ public class MovementSystem extends IteratingSystem {
      */
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-        positionMap.get(entity).setX(positionMap.get(entity).getX() + velocityMap.get(entity).getX());
-        positionMap.get(entity).setY(positionMap.get(entity).getY() + velocityMap.get(entity).getY());
+        PositionComponent positionComponent = positionMap.get(entity);
+        VelocityComponent velocityComponent = velocityMap.get(entity);
 
-        //TODO: work out how much deacelleration per a loop.
-        velocityMap.get(entity).setX(positionMap.get(entity).getX() - 0.1f);
-        velocityMap.get(entity).setY(positionMap.get(entity).getY() - 0.1f);
+        // TODO - find a way of making this more accurate / a more accurate method
 
-        if(velocityMap.get(entity).getX() == 0 & velocityMap.get(entity).getY() == 0){
+        // Accurately comparing a float to 0 is not easy, apparently.
+        float epsilon = 0.1f;
+        if (Math.abs(velocityComponent.getX() - 0) < epsilon && Math.abs(velocityComponent.getY() - 0) < epsilon) {
             entity.remove(VelocityComponent.class);
+        }
+
+
+        // TODO: work out how much deceleration per loop. (Use deltaTime to make decel speed more accurate)
+
+        if (velocityComponent.getX() != 0) {
+            positionComponent.setX(positionComponent.getX() + velocityComponent.getX());
+            if (velocityComponent.getX() > 0) {
+                velocityComponent.setX(velocityComponent.getX() - entityDecelSpeed);
+            } else if (velocityComponent.getX() < 0) {
+                velocityComponent.setX(velocityComponent.getX() + entityDecelSpeed);
+            }
+        }
+
+        if (velocityComponent.getY() != 0) {
+            positionComponent.setY(positionComponent.getY() + velocityComponent.getY());
+            if (velocityComponent.getY() > 0) {
+                velocityComponent.setY(velocityComponent.getY() - entityDecelSpeed);
+            } else if (velocityComponent.getY() < 0) {
+                velocityComponent.setY(velocityComponent.getY() + entityDecelSpeed);
+            }
         }
     }
 }

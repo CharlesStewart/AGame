@@ -23,6 +23,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import xyz.lexteam.agame.client.AGame;
+import xyz.lexteam.agame.client.PlayerInputHandler;
 import xyz.lexteam.agame.client.entity.component.TextureComponent;
 import xyz.lexteam.agame.client.entity.system.RenderSystem;
 import xyz.lexteam.agame.entity.component.PositionComponent;
@@ -35,28 +36,33 @@ public class GameScreen implements Screen {
 
     private final AGame game;
     private final Engine engine;
+    private PlayerInputHandler inputHandler;
 
     public GameScreen(AGame game) {
         this.game = game;
-        this.engine = new Engine();
 
+        this.engine = new Engine();
         this.engine.addSystem(new RenderSystem(this.game.getBatch()));
         this.engine.addSystem(new MovementSystem());
 
         Entity player = new Entity();
-        player.add(new PositionComponent());
+        player.add(new PositionComponent(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2));
         player.add(new TextureComponent(new Texture("player.png")));
         this.engine.addEntity(player);
+
+        inputHandler = new PlayerInputHandler(player);
+        Gdx.input.setInputProcessor(inputHandler);
     }
 
     @Override
-    public void show() {
-    }
+    public void show() { }
 
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        inputHandler.update();
 
         this.game.getBatch().begin();
         engine.update(Gdx.graphics.getDeltaTime());
@@ -64,23 +70,17 @@ public class GameScreen implements Screen {
     }
 
     @Override
-    public void resize(int width, int height) {
-    }
+    public void resize(int width, int height) { }
 
     @Override
-    public void pause() {
-    }
+    public void pause() { }
 
     @Override
-    public void resume() {
-    }
+    public void resume() { }
 
     @Override
-    public void hide() {
-    }
+    public void hide() { }
 
     @Override
-    public void dispose() {
-    }
-
+    public void dispose() { }
 }

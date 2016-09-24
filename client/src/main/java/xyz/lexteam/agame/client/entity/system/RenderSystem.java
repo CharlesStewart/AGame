@@ -63,8 +63,8 @@ public class RenderSystem extends IteratingSystem {
      */
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-        renderTarget.draw(textureMap.get(entity).getTexture()
-                , positionMap.get(entity).getX(), positionMap.get(entity).getY());
+        renderTarget.draw(textureMap.get(entity).getTexture(),
+                positionMap.get(entity).getX(), positionMap.get(entity).getY());
     }
 
 }
