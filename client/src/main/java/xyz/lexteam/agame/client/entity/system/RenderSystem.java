@@ -16,7 +16,9 @@
 
 package xyz.lexteam.agame.client.entity.system;
 
-import com.badlogic.ashley.core.ComponentMapper;
+import static xyz.lexteam.agame.entity.Mappers.*;
+import static xyz.lexteam.agame.client.entity.ClientMappers.*;
+
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
@@ -29,16 +31,6 @@ import xyz.lexteam.agame.entity.system.MovementSystem;
  * An {@link IteratingSystem} for rendering an texture at a position.
  */
 public class RenderSystem extends IteratingSystem {
-
-    /**
-     * Allows access to any entity's {@link TextureComponent}.
-     */
-    private ComponentMapper<TextureComponent> textureMap = ComponentMapper.getFor(TextureComponent.class);
-
-    /**
-     * Allows access to any entity's {@link PositionComponent}.
-     */
-    private ComponentMapper<PositionComponent> positionMap = ComponentMapper.getFor(PositionComponent.class);
 
     /**
      * The object unto which the texture is drawn.
@@ -63,8 +55,8 @@ public class RenderSystem extends IteratingSystem {
      */
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-        renderTarget.draw(textureMap.get(entity).getTexture(),
-                positionMap.get(entity).getX(), positionMap.get(entity).getY());
+        renderTarget.draw(TEXTURE.get(entity).getTexture(),
+                POSITION.get(entity).getX(), POSITION.get(entity).getY());
     }
 
 }

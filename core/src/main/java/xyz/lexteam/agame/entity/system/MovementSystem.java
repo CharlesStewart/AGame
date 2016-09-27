@@ -16,7 +16,8 @@
 
 package xyz.lexteam.agame.entity.system;
 
-import com.badlogic.ashley.core.ComponentMapper;
+import static xyz.lexteam.agame.entity.Mappers.*;
+
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
@@ -29,16 +30,6 @@ import xyz.lexteam.agame.entity.component.VelocityComponent;
 public class MovementSystem extends IteratingSystem {
 
     private final float entityDecelSpeed = 0.1f;
-
-    /**
-     * Allows access to any entity's {@link PositionComponent}.
-     */
-    private ComponentMapper<PositionComponent> positionMap = ComponentMapper.getFor(PositionComponent.class);
-
-    /**
-     * Allows access to any entity's {@link VelocityComponent}.
-     */
-    private ComponentMapper<VelocityComponent> velocityMap = ComponentMapper.getFor(VelocityComponent.class);
 
     /**
      * Creates a new instance of {@link MovementSystem} with the correct family of components.
@@ -55,8 +46,8 @@ public class MovementSystem extends IteratingSystem {
      */
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-        PositionComponent positionComponent = positionMap.get(entity);
-        VelocityComponent velocityComponent = velocityMap.get(entity);
+        PositionComponent positionComponent = POSITION.get(entity);
+        VelocityComponent velocityComponent = VELOCITY.get(entity);
 
         // TODO - find a way of making this more accurate / a more accurate method
 
