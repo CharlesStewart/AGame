@@ -26,6 +26,22 @@ public class HealthComponent implements Component {
     private float health;
 
     /**
+     * Creates a health component with the default health (100.0f).
+     */
+    public HealthComponent() {
+        this.health = 100.0f;
+    }
+
+    /**
+     * Creates a health component with the given health.
+     *
+     * @param health The health
+     */
+    public HealthComponent(float health) {
+        this.health = health;
+    }
+
+    /**
      * Gets the health of the entity.
      *
      * @return The health
