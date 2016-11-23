@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package xyz.lexteam.agame.desktop;
+package xyz.lexteam.agame.client.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import xyz.lexteam.agame.client.AGame;
 
-public class DesktopLauncher {
+public final class DesktopLauncher {
 
     public static void main(String[] arg) {
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();

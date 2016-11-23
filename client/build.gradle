@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'net.minecrell.licenser'
 
 sourceCompatibility = 1.8
@@ -9,6 +10,8 @@ archivesBaseName = project.name.toLowerCase()
 dependencies {
     compile project(':core')
     compile "com.badlogicgames.gdx:gdx:$rootProject.gdxVersion"
+    compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$rootProject.gdxVersion"
+    compile "com.badlogicgames.gdx:gdx-platform:$rootProject.gdxVersion:natives-desktop"
 }
 
 license {
@@ -21,3 +24,22 @@ configure([compileJava, compileTestJava]) {
     options.deprecation = true
     options.encoding = 'UTF-8'
 }
+
+jar {
+    classifier = 'base'
+
+    manifest {
+        attributes(
+                'Main-Class': 'xyz.lexteam.agame.client.desktop.DesktopLauncher'
+        )
+    }
+}
+
+shadowJar {
+    classifier = ''
+}
+
+artifacts {
+    archives shadowJar
+}
+
